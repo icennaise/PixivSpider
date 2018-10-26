@@ -3,6 +3,7 @@
 这是一个p站爬虫，只要你有p站账号和登入p站的手段，那么通过你输入的PID，它会帮你下载相似的图片到本地。
 
 #### **PixivSpider.exe即为爬虫本体，下载使用即可**
+**下载链接：https://github.com/icennaise/PixivSpider/raw/master/PixivSpider.exe**
 #### **觉得好用的话请点一下Star 谢谢x**
 ### **使用说明**
 
