@@ -46,7 +46,8 @@ data={
     'post_key': postkey,
     'return_to': 'https://www.pixiv.net/'
     }
-s.post(LoginUrl,data=data,headers=loginHeader,proxies=proxies)
+b=s.post(LoginUrl,data=data,headers=loginHeader,proxies=proxies)
+print(b.text)
 aim_url_p="https://www.pixiv.net/ajax/illust/70449747/recommend/init?limit="
 aim_url_p="https://www.pixiv.net/ajax/illust/"
 aim_pid=input("输入目标图pid:")
