@@ -20,14 +20,16 @@ inter_url="https://www.pixiv.net/member_illust.php?mode=medium&illust_id="
 loginHeader = { 
        'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36",
        'Referer': "https://accounts.pixiv.net/login?lang=zh&source=pc&view_type=page&ref=wwwtop_accounts_index",
-      }
+       'cookie':"__cfduid=db0a0c316c591aa11e4f7cd103d2f4d5f1597729530; first_visit_datetime_pc=2020-08-18+14%3A45%3A30; p_ab_id=8; p_ab_id_2=0; p_ab_d_id=834985689; yuid_b=J3GAlCM; __utma=235335808.709683855.1597729532.1597729532.1597729532.1; __utmc=235335808; __utmz=235335808.1597729532.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); _fbp=fb.1.1597729532642.1869815081; login_bc=1; _ga=GA1.2.709683855.1597729532; _gid=GA1.2.606048055.1597729535; device_token=5109b960e6a7d35a048a259228c29b51; c_type=23; a_type=0; b_type=1; __utmv=235335808.|2=login%20ever=no=1^3=plan=normal=1^5=gender=male=1^6=user_id=20252417=1^9=p_ab_id=8=1^10=p_ab_id_2=0=1^11=lang=zh=1; tag_view_ranking=RTJMXD26Ak~pYlUxeIoeg~28gdfFXlY7~cbmDKjZf9z~Ie2c51_4Sp~n7YxiukgPF~jH0uD88V6F~hzLsBUtKYm~Ap7SN6vi86~v_vD9SVa8E~1GBicHu4Rs~BtXd1-LPRH~HY55MqmzzQ~xb-vAio_xa~tgP8r-gOe_~GlEsKjRIS3~Lt-oEicbBr~RybylJRnhJ~2acjSVohem~p1cqF95SSS~Fq4K_8PGib~ThlAk1fdQu~m3EJRa33xU~uW5495Nhg-~5Npf-yb62j~S0eWMRWoH6~DHJKxWnZVV~6QVzqxQeU8~HSgaEGfNA1~xXK363-v9t~t2ErccCFR9~e8ijvNyzrI~Jt2j1jdIC3~zIv0cf5VVk~xlnbe0hAbx; ki_t=1597729541065%3B1597729541065%3B1597731041679%3B1%3B6; __utmt=1; __utmb=235335808.30.10.1597729532; _gat=1; PHPSESSID=20252417_RT5NgyZwD0miYMRSwWzNcwO96DK3uaNS; privacy_policy_agreement=1"
+       }
 #proxies = { "http": "http://127.0.0.1:8123", "https": "http://127.0.0.1:8123", } 
 proxies = None
 LoginUrl = "https://accounts.pixiv.net/api/login?lang=zh"
 s=requests.Session()
+s.headers=loginHeader
 a=s.get("https://accounts.pixiv.net/login?lang=zh&source=pc&view_type=page&ref=wwwtop_accounts_index",proxies=proxies)
 partten='ue="([0-9]*|[a-z])*"'
-postkey=re.findall(r'value="[^"]*',a.text)[0].split('"')[1]
+#postkey=re.findall(r'value="[^"]*',a.text)[0].split('"')[1]
 try:#读取目录下的用户信息，若未找到则提示输入用户名和密码
     with open('text.txt', 'r') as f:
         user_name=f.readline()
@@ -43,7 +45,7 @@ except(FileNotFoundError) as e:
 data={
     'password': password,
     'pixiv_id': user_name,
-    'post_key': postkey,
+    #'post_key': postkey,
     'return_to': 'https://www.pixiv.net/'
     }
 b=s.post(LoginUrl,data=data,headers=loginHeader,proxies=proxies)
